@@ -19,13 +19,23 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private JwtAccessTokenService jwtService;
+
     @GetMapping
     public String getProductPage(Model model) {
-        model.addAttribute("products", productService.getAllProducts());
+//        model.addAttribute("products", productService.getAllProducts());
 
+
+        String jwtResponse = jwtService.requestAccessToken();
+
+        System.out.println("Token: " + jwtResponse);
 
         return "product";
     }
+
+
 
     @GetMapping("/add")
     public String getAddProductPage(Model model) {
