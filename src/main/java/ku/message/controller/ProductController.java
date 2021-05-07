@@ -25,12 +25,13 @@ public class ProductController {
 
     @GetMapping
     public String getProductPage(Model model) {
-//        model.addAttribute("products", productService.getAllProducts());
 
 
         String jwtResponse = jwtService.requestAccessToken();
 
         System.out.println("Token: " + jwtResponse);
+
+        model.addAttribute("products", productService.getAllProducts());
 
         return "product";
     }
